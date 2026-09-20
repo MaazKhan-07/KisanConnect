@@ -1,47 +1,56 @@
-# SIH26132 — KisanConnect (Starter Codebase)
+# KisanConnect
 
-Market Linkages & Price Discovery for Farmers — working MVP scaffold for the
-5-hour internal hackathon build.
+**Know your price. Sell with confidence.**
 
-## What's already working
-- FastAPI backend with SQLite (no DB server install needed)
-- Price trend engine (7-day vs. previous-7-day comparison)
-- LLM advisory message generation (Gemini, with safe offline fallback)
-- Rule-based, explainable buyer-matching engine
-- Next.js frontend: price dashboard, lot-creation form, buyer-matches screen
-- 300 rows of realistic (synthetic) Maharashtra mandi price data pre-seeded
+KisanConnect is a market-linkage and price-discovery platform built for Maharashtra farmers. It combines real-time mandi (market) price trends with AI-powered advisory and a rule-based buyer-matching engine, helping farmers decide when and where to sell their harvest.
+**This website is made for SIH 2026 internal hackathon for learning purpose**
 
-## Quickstart
+🔗 **Live app:** https://kisan-connect-mu.vercel.app
 
-### Backend
-```bash
-cd backend
-python3 -m venv venv
-source venv/bin/activate        # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-python seed_db.py               # creates + fills sih26132.db
-uvicorn app.main:app --reload --port 8000
+---
+
+## Features
+
+- 📈 **Price trend engine** — compares the last 7 days of mandi prices against the previous 7 days to show whether prices are rising, falling, or stable
+- 🤖 **AI advisory messages** — generates plain-language selling advice using an LLM (Gemini), with a safe templated fallback when no API key is configured
+- 🤝 **Buyer-matching engine** — rule-based, explainable matching between farmer crop lots and potential buyers
+- 🌾 **Farmer dashboard** — price dashboard, lot-creation form, and buyer-matches screen
+- 🗃️ **Seeded sample data** — pre-loaded with realistic synthetic Maharashtra mandi price data for demo purposes
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | Next.js |
+| Backend | FastAPI (Python) |
+| Database | SQLite |
+| AI/LLM | Google Gemini API (optional) |
+| Frontend hosting | Vercel |
+| Backend hosting | Render |
+
+---
+
+## Project Structure
+
 ```
-Visit http://localhost:8000/docs for interactive API docs (auto-generated).
-
-### Frontend
-```bash
-cd frontend
-npm install
-npm run dev
+KisanConnect/
+├── backend/     # FastAPI app, price engine, buyer matching, DB seeding
+├── data/        # Sample/synthetic mandi price CSV data
+├── frontend/    # Next.js app (dashboard, lot form, buyer matches)
+└── README.md
 ```
-Visit http://localhost:3000
 
-### Optional: enable real AI-generated advisory text
-```bash
-# backend/.env
-GEMINI_API_KEY=your_key_here
-```
-Without a key, the app falls back to a templated (still perfectly demo-safe) message.
+## Roadmap / Ideas
 
-## Replacing sample data with real data
-`data/mandi_prices_sample.csv` is synthetic-but-realistic. Replace it with a real
-Agmarknet/data.gov.in export (same column names), then re-run `python seed_db.py`.
+- Real-time push notifications for price alerts
+- Multi-language support (Marathi, Hindi)
+- Historical price charts and export
+- Buyer-side dashboard and direct messaging
 
-## Folder structure
-See the accompanying Game Plan document for the full team task breakdown.
+---
+
+## Acknowledgements
+
+Made for Maharashtra farmers. © 2026 KisanConnect.
